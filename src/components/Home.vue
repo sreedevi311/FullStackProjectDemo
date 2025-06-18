@@ -5,9 +5,9 @@
 
     <div class="container mt-5 pt-5">
       <div class="row row-cols-1 row-cols-md-5 g-4">
-        <div v-for="movie in movies" :key="movie._id" class="col">
-          <div class="card h-100" @click="goToMovie(movie._id)" style="cursor: pointer">
-            <img :src="movie.poster" class="card-img-top" alt="Movie Image" />
+        <div v-for="movie in movies" :key="movie._id" class="col mb-4">
+          <div class="card movie-card h-100 shadow-primary" @click="goToMovie(movie._id)" style="cursor: pointer">
+            <img :src="movie.poster" class="card-img-top shadow-primary" alt="Movie Image" />
             <div class="card-body">
               <h5 class="card-title movie-title">{{ movie.title }}</h5>
               <p class="card-text director-name">Director: {{ movie.directors[0] }}</p>
@@ -41,7 +41,7 @@
 
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Header from './Header.vue'
 
@@ -58,6 +58,7 @@ const fetchMovies = async () => {
 
   hasMorePages.value = data.length === 10 || 20
 }
+
 
 const nextPage = () => {
   page.value++
@@ -88,6 +89,13 @@ body {
   height: 180px;
   object-fit: cover;
 }
+.movie-card:hover{
+  transform: scale(1.04);
+}
+.btn:hover{
+  background-color:white;
+  color:blue;
+}
 .search-input {
   width: 600px;
 }
@@ -102,5 +110,7 @@ body {
   text-overflow: ellipsis;
   height: 2.6em; 
 }
-
+.shadow-primary {
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.4); /* Bootstrap primary blue */
+}
 </style>

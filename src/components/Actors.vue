@@ -25,7 +25,7 @@
         </div>
 
         <div class="d-flex justify-content-between mt-4">
-            <button class="btn btn-primary" @click="prevPage" :disabled="currentPage === 1">
+            <button class="btn btn-primary" @click="prevPage" :disabled="page === 1">
                 <i class="bi bi-arrow-left-circle me-2"></i>  Previous</button>
             <button class="btn btn-primary" @click="nextPage" :disabled="!hasMorePages">
                 Next <i class="bi bi-arrow-right-circle me-2"></i> </button>
@@ -57,7 +57,7 @@ const fetchMovies = async () => {
   actors.value = data
   console.log(actors)
 
-  hasMorePages.value = data.length === 20
+  hasMorePages.value = data.length >20
 }
 
 const nextPage = () => {

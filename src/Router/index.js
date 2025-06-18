@@ -3,6 +3,7 @@ import Home from '../components/Home.vue'
 import MovieDetail from '../components/MovieDetail.vue'
 import Directors from '../components/Directors.vue'
 import Actors from '../components/Actors.vue'
+import SearchResults from '../components/SearchResults.vue'
 
 const routes = [
   { path: '/',
@@ -19,7 +20,13 @@ const routes = [
 },{
   path:'/actors',
   component: Actors
-}
+},
+{
+  path: '/search-results',
+  name: 'SearchResults',
+  component: SearchResults
+},
+
 ]
 
 const router = createRouter({

@@ -11,7 +11,6 @@ async function connectToDB() {
 
   const client = await MongoClient.connect(process.env.MONGO_URL)
   db = client.db('sample_mflix')
-  collection=db.collection('movies')
   console.log('Connected to MongoDB')
 
 }
@@ -23,7 +22,7 @@ app.use((req,res,next)=>{
     if (!db) {
         return res.status(503).json({ error: 'Database not connected yet' });
     }
-    req.collection=collection
+    req.db=db
     next()
 })
 
