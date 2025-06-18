@@ -1,53 +1,19 @@
 <template>
   <div>
 
-    <nav class="navbar navbar-expand-lg bg-primary fixed-top">
-      <div class="container-fluid">
+    <Header></Header>
 
-        <a class="navbar-brand text-white" href="#">MovieDB</a>
-
-        <div class="collapse navbar-collapse justify-content-start ms-5">
-          <ul class="navbar-nav gap-5">
-            <li class="nav-item">
-              <a class="nav-link text-white nav-hover" href="#">Famous Directors</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white nav-hover" href="#">Famous Actors</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="d-flex align-items-center ms-3 me-auto">
-          <input
-            class="form-control me-2 search-input"
-            type="search"
-            placeholder="Search movies..."
-            v-model="searchQuery"
-            @input="filterMovies"
-          />
-          <button class="btn btn-light me-4" type="button">
-            <i class="bi bi-search text-primary"></i>
-          </button>
-        </div>
-
-        <div class="d-flex align-items-center ms-3 me-4">
-          <i class="bi bi-person-circle text-white fs-2" style="cursor: pointer;"></i>
-        </div>
-      </div>
-    </nav>
-
-   
     <div class="container mt-5 pt-5">
       <div class="row row-cols-1 row-cols-md-5 g-4">
-        <div v-for="movie in movies" :key="movie.id" class="col">
-          <div class="card h-100" @click="goToMovie(movie.id)" style="cursor: pointer">
+        <div v-for="movie in movies" :key="movie._id" class="col">
+          <div class="card h-100" @click="goToMovie(movie._id)" style="cursor: pointer">
             <img :src="movie.poster" class="card-img-top" alt="Movie Image" />
             <div class="card-body">
               <h5 class="card-title movie-title">{{ movie.title }}</h5>
               <p class="card-text director-name">Director: {{ movie.directors[0] }}</p>
               <p class="card-text">Year: {{ movie.year }}</p>
               <p class="card-text">Rating: ⭐ {{ movie.imdb.rating }}</p>
-              <a href="#" class="btn btn-primary">View Full</a>
+              <a @click.stop="goToMovie(movie._id)" class="btn btn-primary">View Full</a>
             </div>
           </div>
         </div>
@@ -76,6 +42,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import Header from './Header.vue'
+
+const router = useRouter()
 
 const movies = ref([])
 const page = ref(1)
@@ -99,6 +69,10 @@ const prevPage = () => {
     page.value--
     fetchMovies()
   }
+}
+
+const goToMovie = (id) => {
+  router.push(`/movies/${id}`)
 }
 
 onMounted(fetchMovies)
