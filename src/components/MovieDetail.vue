@@ -1,7 +1,5 @@
 <template>
   <div>
-    <Header></Header>
-
     <div class="container mt-5 pt-5">
       <button @click="$router.push('/')" class="btn btn-outline-primary mb-4">
         <i class="bi bi-arrow-left"></i> Back to Home
@@ -69,18 +67,12 @@
       </div>
     </div>
 
-
-    <footer class="bg-primary text-light text-center mt-5 p-4 ">
-      <p>&copy; 2025 MovieDB. All rights reserved.</p>
-      <p>Contact us at support@moviedb.com | Privacy Policy | Terms of Service</p>
-    </footer>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import Header from './Header.vue'
 
 const route = useRoute()
 const movie = ref(null)

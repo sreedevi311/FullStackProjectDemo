@@ -1,7 +1,5 @@
 <template>
 
-  <Header></Header>
-
    <div class="container mt-5 pt-5">
         <div class="d-flex justify-content align-items-center mb-4">
             <button @click="$router.push('/')" class="btn btn-outline-primary me-5">
@@ -31,17 +29,12 @@
                 Next <i class="bi bi-arrow-right-circle me-2"></i> </button>
         </div>
     </div>
-    <footer class="bg-primary text-light text-center mt-5 p-4 ">
-        <p>&copy; 2025 MovieDB. All rights reserved.</p>
-        <p>Contact us at support@moviedb.com | Privacy Policy | Terms of Service</p>
-    </footer>
 </template>
 
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,watch } from 'vue'
 import { useRouter } from 'vue-router'
-import Header from './Header.vue'
 
 const router = useRouter()
 
@@ -49,7 +42,7 @@ const directors = ref([])
 const page = ref(1)
 const hasMorePages = ref(true)
 
-const fetchMovies = async () => {
+const fetchDirectors = async () => {
     console.log("request sending")
   const response = await fetch(`http://localhost:3000/movies/directors?page=${page.value}`)
   console.log("data fetched")
@@ -57,23 +50,28 @@ const fetchMovies = async () => {
   directors.value = data
   console.log(directors)
 
-  hasMorePages.value = data.length > 20
+  hasMorePages.value = data.length > 9
 }
 
 const nextPage = () => {
   page.value++
-  fetchMovies()
+  fetchDirectors()
 }
 
 const prevPage = () => {
   if (page.value > 1) {
     page.value--
-    fetchMovies()
+    fetchDirectors()
   }
 }
 
 
-onMounted(fetchMovies)
+onMounted(fetchDirectors)
+
+watch(page, async () => {
+  await fetchDirectors()
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+})
 </script>
 
 

@@ -5,8 +5,14 @@
 
         <a class="navbar-brand text-white nav-hover" href="/">MovieDB</a>
 
-        <div class="collapse navbar-collapse justify-content-start ms-5">
+        <div class="collapse navbar-collapse justify-content-start ms-3">
           <ul class="navbar-nav gap-5">
+            <li class="nav-item">
+              <a class="nav-link text-white nav-hover d-flex align-items-center gap-2" href="/">
+                <i class="bi bi-house"></i>
+                <span>Home</span>
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link text-white nav-hover" href="/directors">Famous Directors</a>
             </li>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-5 pt-5">
     <h3 class="text-primary text-center mb-4">Search Results for "{{ query }}"</h3>
 
     <div class="row">
@@ -39,10 +39,6 @@
     </div>
   </div>
 
-  <footer class="bg-primary text-light text-center mt-5 p-4 ">
-    <p>&copy; 2025 MovieDB. All rights reserved.</p>
-    <p>Contact us at support@moviedb.com | Privacy Policy | Terms of Service</p>
-  </footer>
 </template>
 
 <script setup>

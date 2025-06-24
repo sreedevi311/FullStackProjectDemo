@@ -18,7 +18,7 @@ async function getMovieById(req, res){
 async function getDirectors(req,res){
   console.log("in getDirectors function")
     const page=req.query.page
-    const movies=await req.db.collection('movies').find({}, { projection: { directors: 1, title: 1, _id: 0 } }).skip(20*(page-1)).limit(20).toArray()
+    const movies=await req.db.collection('movies').find({}, { projection: { directors: 1, title: 1, _id: 0 } }).skip(20*(page-1)).limit(10).toArray()
     const directorMap = {};
     movies.forEach(movie => {
     movie.directors.forEach(director => {
@@ -38,7 +38,7 @@ async function getDirectors(req,res){
 async function getActors(req,res){
   console.log("in getActors function")
     const page=req.query.page
-    const movies=await req.db.collection('movies').find({}, { projection: { cast: 1, title: 1, _id: 0 } }).skip(20*(page-1)).limit(20).toArray()
+    const movies=await req.db.collection('movies').find({}, { projection: { cast: 1, title: 1, _id: 0 } }).skip(20*(page-1)).limit(5).toArray()
     const actorMap = {};
     movies.forEach(movie => {
     movie.cast.forEach(actor => {
